@@ -20,29 +20,55 @@
     <main>
         <div class="contenedor">
             <a href="/agregarSalida" id="boton">Agregar producto</a>
-                <table>
+            <table>
+                <thead>
                     <tr>
                         <th>Id</th>
                         <th>Sku</th>
-                        <th>Fecha de entrada</th>
+                        <th>Fecha de salida</th>
                         <th>Metodo de pago</th>
                         <th>Cantidad vendida</th>
                         <th>Precio de venta</th>
                         <th>Acciones</th>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href=""><img src="/img/editar.png" alt="Editar" id="icon"></a>
-                            <a href=""><img src="/img/eliminar.png" alt="Eliminar" id="icon"></a>
-                        </td>
-                    </tr>
-                </table>
+                </thead>
+                <tbody>
+                    <% if (salidas && salidas.length> 0) { %>
+                        <% salidas.forEach(p=> { %>
+                            <tr>
+                                <td>
+                                    <%= p.id_salida %>
+                                </td>
+                                <td>
+                                    <%= p.sku %>
+                                </td>
+                                <td>
+                                    <%= p.fecha_salida %>
+                                </td>
+                                <td>
+                                    <%= p.pago %>
+                                </td>
+                                <td>
+                                    <%= p.cantidad %>
+                                </td>
+                                <td>
+                                    <%= p.precio_total %>
+                                </td>
+                                <td>
+                                    <a href="/productos/agregar/<%= p.id %>"><img src="/img/editar.png" alt="Editar"
+                                            id="icon"></a>
+                                    <a href="/productos/eliminar/<%= p.id %>"><img src="/img/eliminar.png"
+                                            alt="Eliminar" id="icon"></a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="9">No hay productos para mostrar.</td>
+                                    </tr>
+                                    <% } %>
+                </tbody>
+            </table>
         </div>
     </main>
     <footer>

@@ -2,19 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 // Inventario
-router.get('/inventario', (req, res) => {
-    res.render('inventario');
-});
+// Importa el objeto que contiene la función getAll desde el archivo productos.js
+const { getAll } = require('./productos'); 
+router.get('/inventario', getAll('productos', 'inventario'));
 
-// Entradas
-router.get('/entradas', (req, res) => {
-    res.render('entradas');
-});
+//Entradas
+const { getAll: getAllEntradas } = require('./productos');
+router.get('/entradas', getAllEntradas('entradas', 'entradas'));
 
 // Salidas
-router.get('/salidas', (req, res) => {
-    res.render('salidas');
-});
+const { getAll: getAllSalidas } = require('./productos');
+router.get('/salidas', getAllSalidas('salidas', 'salidas'));
 
 //Agregar producto al inventario 
 router.get('/agregar', (req, res) => {

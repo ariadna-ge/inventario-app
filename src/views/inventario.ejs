@@ -20,7 +20,8 @@
     <main>
         <div class="contenedor">
             <a href="/agregar" id="boton">Agregar producto</a>
-                <table>
+            <table>
+                <thead>
                     <tr>
                         <th>Id</th>
                         <th>Producto</th>
@@ -32,21 +33,51 @@
                         <th>Categoria</th>
                         <th>Acciones</th>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href=""><img src="/img/editar.png" alt="Editar" id="icon"></a>
-                            <a href=""><img src="/img/eliminar.png" alt="Eliminar" id="icon"></a>
-                        </td>
-                    </tr>
-                </table>
+                </thead>
+
+                <tbody>
+                    <% if (productos && productos.length> 0) { %>
+                        <% productos.forEach(p=> { %>
+                            <tr>
+                                <td>
+                                    <%= p.id_producto %>
+                                </td>
+                                <td>
+                                    <%= p.producto %>
+                                </td>
+                                <td>
+                                    <%= p.descripcion %>
+                                </td>
+                                <td>
+                                    <%= p.sku %>
+                                </td>
+                                <td>
+                                    <%= p.cantidad %>
+                                </td>
+                                <td>
+                                    <%= p.precio_compra %>
+                                </td>
+                                <td>
+                                    <%= p.precio_venta %>
+                                </td>
+                                <td>
+                                    <%= p.categoria %>
+                                </td>
+                                <td>
+                                    <a href="/productos/agregar/<%= p.id %>"><img src="/img/editar.png" alt="Editar"
+                                            id="icon"></a>
+                                    <a href="/productos/eliminar/<%= p.id %>"><img src="/img/eliminar.png"
+                                            alt="Eliminar" id="icon"></a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="9">No hay productos para mostrar.</td>
+                                    </tr>
+                                    <% } %>
+                </tbody>
+            </table>
         </div>
     </main>
     <footer>
